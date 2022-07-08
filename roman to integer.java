@@ -1,25 +1,21 @@
-import java.util.HashMap;
 class Solution {
-    public int romanToInt(String s) {
-        int x=0;
-        HashMap<String,Integer> languages = new HashMap<>();
-        languages.put("I",1);
-        languages.put("V",5);
-        languages.put("X",10);
-        languages.put("L",50);
-        languages.put("C",100);
-        languages.put("D",500);
-        languages.put("M",1000);
-        for(int i=0;i<s.length();i++)
-        {
-          x = x+languages.get(s.charAt(i)); 
-        }
-        
-    return x;
-    }
-  public static void main(string args[], String m)
-  {
-    System.out.println(romanToInt(m));
+  public int romanToInt(String s) {
+    HashMap<String, Integer> table = new HashMap<>();
+    table.put("I",1);
+    table.put("V",5);
+    table.put("X",10);
+    table.put("L",50);
+    table.put("C",100);
+    table.put("D",500);
+    table.put("M",1000);
+    int num = 0;
+     
+    for(int i = s.length() - 1; i >= 0; i--)
+      if (i == s.length() - 1 || table.get(Character.toString(s.charAt(i))) >= table.get(Character.toString(s.charAt(i+1))))
+           num += table.get(Character.toString(s.charAt(i)));
+      else num -= table.get(Character.toString(s.charAt(i)));
+    
+    return num;
   }
-  
 }
+\\\\\\\
